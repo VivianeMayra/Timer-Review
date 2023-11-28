@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const HistoryContainer = styled.main`
   flex: 1;
   display: flex;
+  width: 100%;
   margin-top: 5rem;
   flex-direction: column;
   h1 {
@@ -51,7 +52,7 @@ export const HistoryList = styled.div`
       font-size: 0.875rem;
       line-height: 1.6;
       &:first-child {
-        width: 50%;
+        width: 44%;
         padding-left: 1.5rem;
       }
       &:last-child {
