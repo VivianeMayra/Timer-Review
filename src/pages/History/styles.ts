@@ -21,6 +21,12 @@ export const HistoryList = styled.div`
   flex: 1;
   overflow: auto;
   margin-top: 2rem;
+  background: #29292e;
+
+  @media (min-width: 1028px) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
   table {
     width: 100%;
     border-collapse: collapse;

@@ -43,6 +43,7 @@ export function CyclesContextProvider({
     (state: CyclesState, action: any) => {
       switch (action.type) {
         case "ADD_NEW_CYCLE":
+          console.log(state, action)
           return {
             ...state,
             cycles: [...state.cycles, action.payload.newCycle],

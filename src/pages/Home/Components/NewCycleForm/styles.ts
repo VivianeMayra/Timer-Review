@@ -43,5 +43,23 @@ export const TaskInput = styled(BaseInput)`
 `
 
 export const MinutesAmountInput = styled(BaseInput)`
-  width: 4rem;
+  width: 2.5rem;
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`
+
+export const MinutesAmountInputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: ${(props) => props.theme["gray-500"]};
+  }
 `

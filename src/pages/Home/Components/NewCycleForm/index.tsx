@@ -1,11 +1,26 @@
 import { useContext } from "react"
-import { FormContainer, MinutesAmountInput, TaskInput } from "./styles"
+import {
+  FormContainer,
+  MinutesAmountInput,
+  MinutesAmountInputContainer,
+  TaskInput,
+} from "./styles"
 import { useFormContext } from "react-hook-form"
 import { CyclesContext } from "../../../../contexts/CyclesContext"
+import { Minus, Plus } from "phosphor-react"
 
 export function NewCycleForm() {
   const { activeCycle } = useContext(CyclesContext)
-  const { register } = useFormContext()
+  const { register, setValue, watch } = useFormContext()
+
+  const count = watch("minutesAmount")
+  const handleIncrement = () => {
+    setValue("minutesAmount", count + 1)
+  }
+
+  const handleDecrement = () => {
+    setValue("minutesAmount", count - 1)
+  }
 
   return (
     <FormContainer>
@@ -26,16 +41,32 @@ export function NewCycleForm() {
       </datalist>
 
       <label htmlFor="minutesAmount">durante</label>
-      <MinutesAmountInput
-        type="number"
-        id="minutesAmount"
-        placeholder="00"
-        step={1}
-        min={1}
-        max={60}
-        disabled={!!activeCycle}
-        {...register("minutesAmount", { valueAsNumber: true })}
-      />
+      <MinutesAmountInputContainer>
+        <button
+          type="button"
+          disabled={count <= 1 || !!activeCycle}
+          onClick={handleDecrement}
+        >
+          <Minus size="12px" />
+        </button>
+        <MinutesAmountInput
+          type="number"
+          id="minutesAmount"
+          placeholder="00"
+          step={1}
+          min={1}
+          max={60}
+          disabled={!!activeCycle}
+          {...register("minutesAmount", { valueAsNumber: true })}
+        />
+        <button
+          type="button"
+          disabled={count >= 60 || !!activeCycle}
+          onClick={handleIncrement}
+        >
+          <Plus size="12px" />
+        </button>
+      </MinutesAmountInputContainer>
 
       <span>minutos.</span>
     </FormContainer>
